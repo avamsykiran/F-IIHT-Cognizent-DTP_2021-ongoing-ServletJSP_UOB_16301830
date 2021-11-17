@@ -6,7 +6,6 @@ Servlets And JSP
     JDK 8
     Tomcat 8.5              https://tomcat.apache.org/download-80.cgi
 
-
     Dynamic Web Application
     -------------------------- (Distributed (Server-client) App)
 
@@ -89,7 +88,7 @@ Servlets And JSP
 
         So we can create our own servlet through a class that extends HttpServlet and overrides the moethods.
 
-        1. Developer is not creating or manging the Servlet objects.
+        1. Developer is not creating or managing the Servlet objects.
         2. WebServer is the one that manages the life cycle of the servlet
             a. create a servlet object
             b. call init method on that object
