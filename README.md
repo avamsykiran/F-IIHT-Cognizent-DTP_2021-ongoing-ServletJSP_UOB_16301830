@@ -103,10 +103,60 @@ Servlets And JSP
         manging the life cyle of Servlets, webserver is called ServletContainer or ServletContext.
 
 
+        protocol://hostName:port/resource?param1=val&param2=val
+
+        HttpServletRequest
+        ----------------------------------------------
+                String getParameter(String paramName);
+                String getContextPath();
+                String getServletPath();
+
+                Object getAttribute(String attributeNAme);
+                void setAttribute(String attribName,Object value);
+                void removeAttribute(String attribName);
+
+                RequestDisptcher getRequestDispatcher(path);
+
+        RequestDispatcher
+        -----------------------
+                void forward(HttpServletReqeust,HttpServletResponse);
+
+        HttpServletResponse
+        -----------------------------------------------
+                PrintWriter getWriter();
+                void setContent(String contentType);
 
 
 
-        
+        Java Server Pages
+        ------------------------------------------------
+
+            Embeded Java into html
+
+                Directive       <%@ page import="" %>
+                                <%@ taglib uri="" prefix="" %>
+
+                Expression      <%=javaExpression%>
+
+                Scriplet        <% anyJavaCode %>
+
+                Declarative     <%! declarations; %>
+
+                Actions         <jsp:include page="" />
+                                <jsp:userBean />
+                                <jsp:getProeprty />
+                                <jsp:setProperty />
+
+            Implicit Objects
+
+                request         HttpServletRequest
+                response        HttpServletResponse
+                application     ServletContext
+                config          ServltConfig
+                out             JspWriter
+                session         HttpSession
+
+            
 
 
 

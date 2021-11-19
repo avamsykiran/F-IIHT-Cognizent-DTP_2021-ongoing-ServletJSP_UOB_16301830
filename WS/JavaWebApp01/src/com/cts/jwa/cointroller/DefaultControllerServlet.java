@@ -29,11 +29,21 @@ public class DefaultControllerServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String userName = req.getParameter("unm");
+		
+		if(userName==null)
+			userName="Nobody";
+		
 		resp.setContentType("text/html");
 		
 		PrintWriter out = resp.getWriter();
 		out.println("<html><body>");
-		out.println("<h2>"+welcomeService.getWelcomeText()+"</h1>");
+		out.println("<form>");
+		out.println("<label>UserName <input type='text' name='unm'/></label>");
+		out.println("<button>SEND</button>");
+		out.println("</form>");
+		out.println("<h2>"+welcomeService.getWelcomeText()+" " + userName +"</h1>");
 		out.println("</body></html>");
 	}
 
