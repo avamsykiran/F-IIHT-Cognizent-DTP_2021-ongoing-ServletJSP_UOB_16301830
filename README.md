@@ -126,8 +126,6 @@ Servlets And JSP
                 PrintWriter getWriter();
                 void setContent(String contentType);
 
-
-
         Java Server Pages
         ------------------------------------------------
 
@@ -156,8 +154,92 @@ Servlets And JSP
                 out             JspWriter
                 session         HttpSession
 
-            
+        MVC Design Pattern
+        ------------------------------------------------
 
+         DAO <---> Service <--model-->  Controller  <-----REQ------  Client
+                                        |
+                                        |
+                                        model
+                                        |
+                                        ↓
+                                        View       --------RESP-----> 
+
+        model       data that is tranfered between Controller and service / Controller and View
+
+        Controller  is the one that always receives the req and guide the flow of exeuction and shares
+                    the processed data as model with a VIEW. Servlets play the role of controller.
+
+        View        is a page that can receive data as model from a controller and present it to the client.
+                    JSP pages act as Views.
+
+
+        Java Expression Element vs Java ExpressionLanguage
+        ------------------------------------------------------
+
+        <%=reqeust.getAttribute("msg")%>                                    ${msg}
+
+        <%=((Employee)reqeust.getAttribute("emp")).getFullName()%>          ${emp.fullName}
+
+        <%=reqeust.getAttribute("emp")==null%>                              ${emp==null}
+                                                                            ${emp eq null}
+
+
+                                                                            ne,gt,gte,lt,lte
+
+
+        State or Session Management
+        ------------------------------------------------------
+
+            http is a state less protocol and for so - data associated with the request is not persistant, as 
+            each request is a new one.
+        
+
+            Session
+                    is a temporary memory allocated to each web user on the web server.
+                    each session has a unique id generated when the session is created.
+                    a session is created when the first req from a client hits the server.
+                    each user/client is differentiated by the UserAgentInfo passed from the client.
+                    each session has a expiry time and that gets renewd when a subsiquent req fromt the client
+                    hits the server with in that expiry time.
+
+                    HttpSession session = request.getSession();
+                    session.getAttribute(String key);
+                    session.setAttribute(String key,Object value);
+                    session.removeAttribute(String key);
+
+        JSTL - Core Tags
+        ------------------------------------------------------
+
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>jstl</artifactId>
+                <version>1.2</version>
+            </dependency>
+
+            Java Standard Tag Library
+
+                <%@ taglib uri="jstl/core_rt" prefix="c" %>
+
+                <c:if test="${msg ne null}">
+                    <p>${msg}</p>
+                </c:if>
+
+                <c:choose>
+                    <c:when test="${friendsList==null}">
+                        <p>No friends lsit received</p>
+                    </c:when>
+                    <c:when test="${friendsList.isEmpty()}">
+                        <p>No friends added to the list<p>
+                    </c:when>
+                    <c:otherwise>
+                        <ol>
+                            <c:forEach items="${friendsList}" var="f">
+                                <li>${f}</li>
+                            <c:/forEach>
+                        </ol>
+                    </c:otherwise>
+                </c:choose>
 
 
 
