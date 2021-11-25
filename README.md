@@ -187,7 +187,6 @@ Servlets And JSP
 
                                                                             ne,gt,gte,lt,lte
 
-
         State or Session Management
         ------------------------------------------------------
 
